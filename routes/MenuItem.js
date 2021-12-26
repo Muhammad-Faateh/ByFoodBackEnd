@@ -30,15 +30,30 @@ router.put('/menuitems/:id', async(req, res) => {
     res.status(200).send(owner)
 
 })
-router.put('/deleteitems/:id', async(req, res) => {
-    const owner = await Owner.findById({ _id: req.body.id })
-    const item = await owner.restaurant.menu.id({ _id: req.params.id })
+router.put("/deleteitems/:id", async(req, res) => {
+    const owner = await Owner.findById({ _id: req.body.id });
+    const item = await owner.restaurant.menu.id({ _id: req.params.id });
     await item.remove();
     await owner.save();
-    res.status(200).send(owner)
+    res.status(200).send(owner);
+});
 
-
-})
+router.patch("/approvemenuitem/:id", async(req, res) => {
+    const owner = await Owner.findById({ _id: req.body.ownerID });
+    const item = await owner.restaurant.menu.id({ _id: req.params.id });
+    item.status = "Approved";
+    await item.save();
+    await owner.save();
+    res.status(200).send(owner);
+});
+router.patch("/rejectmenuitem/:id", async(req, res) => {
+    const owner = await Owner.findById({ _id: req.body.ownerID });
+    const item = await owner.restaurant.menu.id({ _id: req.params.id });
+    item.status = "Rejected";
+    await item.save();
+    await owner.save();
+    res.status(200).send(owner);
+});
 
 
 

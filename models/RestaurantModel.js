@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { MenuSchema } = require('./MenuItemModel');
+const { ReviewSchema } = require("./ReviewModel");
 
 const RestaurantSchema = new mongoose.Schema({
     restaurantName: String,
@@ -8,8 +9,13 @@ const RestaurantSchema = new mongoose.Schema({
     dineIn: Boolean,
     takeAway: Boolean,
     image: String,
-    menu: [MenuSchema]
-})
+    menu: [MenuSchema],
+    rating: {
+        type: Number,
+        default: 0,
+    },
+    reviews: [ReviewSchema],
+});
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
 

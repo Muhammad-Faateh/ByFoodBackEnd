@@ -5,8 +5,13 @@ const MenuSchema = new mongoose.Schema({
     description: String,
     category: String,
     price: Number,
-    image: String
-})
+    image: String,
+    status: {
+        type: String,
+        enum: ["Pending", "Approved", "Rejected"],
+        default: "Pending",
+    },
+});
 
 const MenuItem = mongoose.model('MenuItem', MenuSchema);
 

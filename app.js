@@ -14,6 +14,9 @@ var indexRouter = require("./routes/index");
 const ownerRouter = require("./routes/Owner");
 const restaurantRouter = require("./routes/Restaurant");
 const menuItemRouter = require("./routes/MenuItem");
+const AdminRouter = require("./routes/Admin");
+const ReviewRouter = require("./routes/Review");
+const NotifRouter = require("./routes/Notification");
 
 var app = express();
 
@@ -33,6 +36,9 @@ app.use("/api/restaurant", restaurantRouter);
 app.use("/api/menuitem", menuItemRouter);
 app.use(require("./routes/auth"));
 app.use("/api", require("./routes/post"));
+app.use("/api/admin", AdminRouter);
+app.use("/api/review", ReviewRouter);
+app.use("/api/notifications", NotifRouter);
 
 // app.use('/users', usersRouter);
 

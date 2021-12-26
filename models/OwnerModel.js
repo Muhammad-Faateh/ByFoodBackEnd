@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const bycrpt = require('bcryptjs');
 const { RestaurantSchema } = require('./RestaurantModel');
+const { NotificationSchema } = require("./NotificationModel");
 
 const OwnerSchema = new mongoose.Schema({
     name: String,
@@ -10,10 +11,26 @@ const OwnerSchema = new mongoose.Schema({
     password: String,
     role: {
         type: String,
-        default: 'Owner'
+        default: "Owner",
     },
-    restaurant: RestaurantSchema
-})
+    restaurant: RestaurantSchema,
+    isRestaurantRejected: {
+        type: Boolean,
+        default: false,
+    },
+    isRestaurantDeleted: {
+        type: Boolean,
+        default: false,
+    },
+    restaurantStatus: {
+        type: Boolean,
+        default: false,
+    },
+    notifications: {
+        type: [NotificationSchema],
+        default: () => [],
+    },
+});
 
 OwnerSchema.methods.encryptPassword = async function(password) {
     let hashPassword = await bycrpt.hash(password, 10);
