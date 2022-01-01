@@ -17,10 +17,15 @@ const PostSchema = new mongoose.Schema({
     postedBy: {
         type: Object,
     },
-    // postedByOwner: {
-    //     type: ObjectId,
-    //     ref: "Owner",
-    // },
+    likes: {
+        type: Number,
+        default: 0,
+    },
+    status: {
+        type: String,
+        enum: ["Pending", "Approved", "Rejected"],
+        default: "Pending",
+    },
     comments: [CommentSchema],
 }, { timestamps: true });
 

@@ -42,6 +42,7 @@ router.patch("/approvemenuitem/:id", async(req, res) => {
     const owner = await Owner.findById({ _id: req.body.ownerID });
     const item = await owner.restaurant.menu.id({ _id: req.params.id });
     item.status = "Approved";
+    console.log(owner);
     await item.save();
     await owner.save();
     res.status(200).send(owner);

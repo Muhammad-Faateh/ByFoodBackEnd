@@ -10,7 +10,7 @@ const { MONGOURI } = require("./keys");
 require("./models/user");
 require("./models/post");
 
-var indexRouter = require("./routes/index");
+// var indexRouter = require("./routes/index");
 const ownerRouter = require("./routes/Owner");
 const restaurantRouter = require("./routes/Restaurant");
 const menuItemRouter = require("./routes/MenuItem");
